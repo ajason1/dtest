@@ -14,7 +14,9 @@ namespace DeveloperTest.Infrastructure
         }
         public async Task<string> GetString(Uri uri)
         {
-            return await _client.GetStringAsync(uri).ConfigureAwait(false);
+            var response = await _client.GetAsync(uri);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync();
         }
         public void Dispose()
         {
