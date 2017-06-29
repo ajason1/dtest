@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model DeveloperTest.Web.Models.PetListingViewModel
+<div class="jumbotron">
+    
+    MVC version
+
+    <p>Html version and web api can be accessed on <a href="~/PetListingDemo.html">PetListingDemo.html</a></p>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        @foreach (var petOwner in Model.PetOwnersGroupByGender)
+        {
+            <div>
+                @Html.DisplayFor(m => petOwner.Item1)
+                <ul>
+                    @foreach (var pet in petOwner.Item2)
+                    {
+                      <li>@Html.DisplayFor(p => pet.Name)</li>
+                    }
+                </ul>
+            
+            </div>
+
+        }
+    </div>
+</div>
